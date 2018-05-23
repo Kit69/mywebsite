@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 from django.core.urlresolvers import reverse
 
@@ -35,6 +36,7 @@ class Post(models.Model):
 
     objects = models.Manager()    # The default manager.
     published = PublishedManager() # Our custom manager.
+    tags = TaggableManager() # Tags manager
 
     def get_absolute_url(self):
         return reverse('blog:post_detail',
